@@ -1,0 +1,101 @@
+
+.container {
+	width: 100%;
+}
+
+.div1_1 {
+	width: 100px;
+	height: 100px;
+	float: left;
+	background-color: red;
+}
+
+.div1_2 {
+	height: 100px;
+	margin-left: 100px;
+	background-color: blue; 
+}
+
+.div1_3 {
+	height: 100px;
+	width: 100%;
+	background-color: yellow;
+}
+
+.container2 {
+	padding: 0 190px 0 190px;
+	overflow: hidden;
+}
+
+.main {
+	width: 100%;
+	height: 100px;
+	float: left;
+	background-color: red;
+}
+
+.left {
+	width: 190px;
+	height: 100px;
+	margin-left: -100%;
+	float: left;
+	position: relative;
+	left: -190px;
+	background-color: blue;
+}
+
+.right {
+	width: 190px;
+	height: 100px;
+	margin-left: -190px;
+	float: left;
+	position: relative;
+	right: -190px; 
+	background-color: yellow;
+}
+
+.container3 {
+	margin-top: 10px;
+	overflow: hidden;
+}
+
+.main1 {
+	width: 100%;
+	height: 100px;
+	float: left;
+	background-color: red;
+}
+
+.left1 {
+	width: 190px;
+	height: 100px;
+	margin-left: -100%;
+	float: left;
+	background-color: blue;
+}
+
+.right1{
+	width: 190px;
+	height: 100px;
+	margin-left: -190px;
+	float: left;
+	background-color: yellow;
+}
+
+.main_wrap1 {
+	margin: 0 190px 0 190px;
+}
+
+.container4 {
+	margin-top: 10px;
+	overflow: hidden;
+	background-color: red;
+}
+
+.box {
+	width: 300px;
+	height: 300px;
+	float: left;
+	margin: 10px;
+	background-color: blue;
+}
