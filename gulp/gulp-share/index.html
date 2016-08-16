@@ -1,0 +1,327 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>前端脚手架</h1>
+					<p><small>Created by <a href="#">Meng Xiangxin</a></small></p>
+				</section>
+				<section>
+					<h2>CSS预处理器</h2>
+					<p>CSS不是编程语言，没有变量，没有循环，没有条件语句，只是一行行单纯的描述，写起来效率不高。于是有人就开始为CSS加入了编程的元素，就叫做"CSS预处理器"。
+				</section>
+				<section>
+					<h2>Sass</h2>
+					<p>定义了一套新的语法规则和函数，以加强和提升CSS。通过这种新的编程语言，可以使用最高效的方式，以少量的代码创建复杂的设计。它改进并增强了CSS的能力，增加了变量，局部和函数这些特性。</p>
+				</section>
+				<section>
+					<section>
+						<h1>Sass的语法</h1>
+					</section>
+					<section>
+						<h2>变量</h2>
+						<pre><code class="hljs" data-trim contenteditable>
+$fontStack:    Helvetica, sans-serif;
+$primaryColor: #333;
+
+body {
+  font-family: $fontStack;
+  color: $primaryColor;
+}
+						</code></pre>
+						<pre><code class="hljs" data-trim contenteditable>
+body {
+  font-family: Helvetica, sans-serif;
+  color:#333;
+}
+						</code></pre>
+					</section>	
+					<section>
+						<h2>计算功能</h2>
+						<pre><code class="hljs" data-trim contenteditable>
+.container { width: 100%; }
+article[role="main"] {
+  float: left;
+  width: 600px / 960px * 100%;
+}
+aside[role="complimentary"] {
+  float: right;
+  width: 300px / 960px * 100%;
+}
+						</code></pre>
+						<pre><code class="hljs" data-trim contenteditable>
+.container {
+  width: 100%;
+}
+article[role="main"] {
+  float: left;
+  width: 62.5%;
+}
+aside[role="complimentary"] {
+  float: right;
+  width: 31.25%;
+}				</code></pre>
+					</section>		
+					<section>
+						<h2>嵌套</h2>
+						<p>选择器嵌套、属性嵌套</p>
+						<pre><code class="hljs" data-trim contenteditable>
+//Sass Style
+.header {
+    background-color: grey;
+    padding: 10px 15px;
+    .social-buttons {
+        background-color: red;
+        float: right;
+        padding:{
+          right:20px;
+          left:30px;
+        };
+        a {
+            color: white;
+            margin-right: 5px;
+            &:hover{
+            	color:red;
+        	}
+        }
+
+    }
+}
+
+//CSS style
+.header {
+  background-color: grey;
+  padding: 10px 15px;
+}
+.header .social-buttons {
+  background-color: red;
+  float: right;
+  padding-right: 20px;
+  padding-left: 30px;
+}
+.header .social-buttons a {
+  color: white;
+  margin-right: 5px;
+}
+.header .social-buttons a:hover {
+  color: red;
+}
+
+
+
+						</code></pre>
+					</section>
+					<section>
+						<h2>继承</h2>
+						<pre><code class="hljs" data-trim contenteditable>
+.one {  
+    width:100px;height:100px;  
+}  
+.two {  
+    @extend .one;  
+    background:red;  
+    border:5px solid #000;  
+}  
+.three {  
+    @extend .two;  
+    padding:10px;  
+}  
+						</code></pre>
+						<pre><code class="hljs" data-trim contenteditable>
+.one, .two, .three {
+  width: 100px;
+  height: 100px;
+}
+.two, .three {
+  background: red;
+  border: 5px solid #000;
+}
+.three {
+  padding: 10px;
+}
+
+						</code></pre>
+					</section>
+					<section>
+						<h2>宏命令(mixin)</h2>
+						<pre><code class="hljs" data-trim contenteditable>
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -khtml-border-radius: $radius;
+    border-radius: $radius;
+}
+#navbar li { 
+	@include border-radius(5px); 
+}
+						</code></pre>
+						<pre><code class="hljs" data-trim contenteditable>
+#navbar li {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+}
+						</code></pre>
+					</section>
+					<section>
+						<h2>插入文件</h2>
+						<pre><code class="hljs" data-trim contenteditable>
+@import "index/header";
+@import "index/footer";
+@import "index/sidebar";
+						</code></pre>
+					</section>
+					<section>
+						<h2>条件、循环语句</h2>
+						<pre><code class="hljs" data-trim contenteditable>
+p {
+　	@if 1 + 1 == 2 { border: 1px solid; }
+　　@if 5 < 3 { border: 2px dotted; }
+}
+@for $i from 1 to 10 {
+　　.border-#{$i} {
+　　　　border: #{$i}px solid blue;
+　　}
+}
+$animal-list: puma, sea-slug, egret, salamander;
+@each $animal in $animal-list {
+  .#{$animal}-icon {
+    background-image: url('/images/#{$animal}.png');
+  }
+}
+						</code></pre>
+					</section>
+					<section>
+						<h2>自定义函数</h2>
+						<pre><code class="hljs" data-trim contenteditable>
+@function double($n) {
+　　@return $n * 2;
+}
+
+#sidebar {
+　　width: double(5px);
+}
+						</code></pre>
+					</section>
+				</section>
+				<section>
+					<h2>gulp:基于流的自动化构建工具</h2>
+					<p>gulp是前端开发过程中对代码进行构建的工具，是自动化项目的构建利器。gulp是基于Nodejs的自动任务运行器， 它能自动化地完成 javascript/coffee/sass/less/image/css 等文件的的测试、检查、合并、压缩、格式化、浏览器自动刷新、部署文件生成，并监听文件在改动后重复指定的这些步骤。</p>
+				</section>
+				<section>
+					<h2>gulp的流思想</h2>
+					<p>gulp借鉴了Unix操作系统的流管道（pipe）思想，前一级的输出，直接变成后一级的输入，使得在操作上非常简单。gulp 和 grunt 非常类似，但相比于 grunt 的频繁 IO 操作，gulp 的流操作，能更快地更便捷地完成构建工作。</p>
+				</section>
+				<section>
+					<h2>gulp API</h2>
+					<ul>
+						<li>gulp.src()</li>
+						<li>gulp.dest()</li>
+						<li>gulp.task()</li>
+						<li>gulp.watch()</li>
+						<li>pipe()</li>
+					</ul>
+				</section>
+				<section>
+					<section>
+						<h2>gulp插件</h2>
+						<p>gulp-uglify gulp-minify-css</p>
+						<pre><code class="hljs" data-trim contenteditable>
+	// 获取 gulp
+	var gulp = require('gulp')
+
+	// 获取 minify-css 模块（用于压缩 CSS）
+	var minifyCSS = require('gulp-minify-css')
+
+	// 压缩 css 文件
+	// 在命令行使用 gulp css 启动此任务
+	gulp.task('css', function () {
+	    // 1. 找到文件
+	    gulp.src('css/*.css')
+	    // 2. 压缩文件
+	        .pipe(minifyCSS())
+	    // 3. 另存为压缩文件
+	        .pipe(gulp.dest('dist/css'))
+	})
+
+	// 在命令行使用 gulp auto 启动此任务
+	gulp.task('auto', function () {
+	    // 监听文件修改，当文件被修改则执行 css 任务
+	    gulp.watch('css/*.css', ['css'])
+	});
+
+	// 使用 gulp.task('default') 定义默认任务
+	// 在命令行使用 gulp 启动 css 任务和 auto 任务
+	gulp.task('default', ['css', 'auto'])
+							</code></pre>
+					</section>
+					<section>
+						<h2>gulp插件</h2>
+						<ul>
+							<li>gulp-sourcemaps 压缩后JS调试</li>
+							<li>gulp-watch-path 只编译发生变化的文件</li>
+							<li>gulp-ruby-sass 编译sass文件</li>
+							<li>stream-combiner2 错误提示</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<h2>相关资料</h2>
+					<ul>
+						<li><a href="http://www.ruanyifeng.com/blog/2012/06/sass.html">SASS用法指南--阮一峰</a></li>
+						<li><a href="http://www.w3cplus.com/sassguide/">w3cplus Sass指南</a></li>
+						<li><a href="https://github.com/nimojs/gulp-book">gulp 入门指南</a></li>
+						<li><a href="http://www.gulpjs.com.cn/">gulp.js中文网</a></li>
+					</ul>
+				</section>
+				<section>
+					<h1>Thank&nbsp&nbspYOU</h1>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>

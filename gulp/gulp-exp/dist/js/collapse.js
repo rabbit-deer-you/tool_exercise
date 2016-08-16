@@ -1,0 +1,2 @@
+!function(t){var n={wrapper:""};t.fn.extend({MyCollapse:function(e){"object"==typeof e?this._setting=t.extend(!0,{},n,e):this._setting=t.extend(!0,{},n)}}),t.fn.MyCollapse.prototype.init=function(){var n=this;n.nav=t(this._setting.wrapper+" li").find(".title"),t.each(n.nav,function(){t(t(this)).on("click",function(){t(t(this).next()).slideToggle(400),t(".collapse_con").not(t(this).next()).slideUp()})})}}(jQuery);
+//# sourceMappingURL=collapse.js.map
