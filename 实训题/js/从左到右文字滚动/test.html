@@ -1,0 +1,70 @@
+
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="test.js"></script>
+</head>
+<style>
+	.demo{
+		 width:1000px;
+    height:30px;
+    overflow:hidden;
+
+	}
+	.container{
+		width:900px;
+		overflow:hidden;
+		white-space: nowrap;
+		margin:0 auto;
+		height:20px;
+	}
+	.demo1{	
+		display:inline;
+	}
+	.demo2{	
+		display:inline;
+	}
+</style>
+<body>
+<div id="demo" class="demo">
+	<div id="container" class="container">
+		<div id="con_1" class="demo1">
+			<span>aaaaa</span>
+			<span>bbbbb</span>
+			<span>ccccc</span>
+			<span>ddddd</span>
+			<span>eeeee</span>
+			<span>fffff</span>
+			<span>hhhhh</span>
+			<span>iiiii</span>
+			<span>ggggg</span>
+			<span>kkkkk</span>
+			<span>lllll</span>
+			<span>mmmmm</span>
+			<span>nnnnn</span>
+			<span>ooooo</span>
+			<span>ppppp</span>
+			<span>qqqqq</span>
+			<span>rrrrr</span>
+			<span>sssss</span>
+			<span>ttttt</span>
+			<span>uuuuu</span>
+			<span>vvvvv</span>
+		</div>
+		<div id="con_2" class="demo2"></div>
+	</div>
+</div>
+<script>
+	var opt = {
+		wrapper:"#demo",
+		speed:50
+	};
+	var scroll = new $.fn.scrollText(opt);
+	scroll.init();
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片轮播图</title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+</head>
+<body>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		.Pic{
+			height:220px;
+			width:352px;
+			position:relative;
+		}
+		.picCon{
+			height:220px;
+			width:352px;
+		}
+		.picCon li{
+			float:left;
+			list-style:none;
+			display:none;
+		}
+		.next{
+			display:inline-block;
+			right:10px;
+			top:80px;
+			font-size:30px;
+			height:60px;
+			width:26px;
+			position: absolute;
+			display:none;
+		}
+		.back{
+			display:inline-block;
+			left:10px;
+			top:80px;
+			font-size:30px;
+			height:60px;
+			width:26px;
+			position: absolute;
+			display:none;
+		}
+	</style>
+	<div id="Pics" class="Pic">
+		<ul class="picCon">
+			<li><img src="slideimg_1.jpg" /></li>
+			<li><img src="slideimg_2.jpg" /></li>
+            <li><img src="slideimg_3.jpg" /></li>
+            <li><img src="slideimg_4.jpg" /></li>
+            <li><img src="slideimg_5.jpg" /></li>
+            <li><img src="slideimg_6.jpg" /></li>
+            <li><img src="slideimg_7.jpg" /></li>
+            <li><img src="slideimg_8.jpg" /></li>
+		</ul>
+		<a href="#" class="back"><</a>
+        <a href="#" class="next">></a>
+	</div>
+	<script src="PicSlide.js"></script>
+	<script>
+		var opt = {
+                wrapper : "#Pics",
+                slideTime : 2000
+            };
+        var mySlider = new $.fn.PicSlide(opt);
+        mySlider.init();
+	</script>
+</body>
+</html>

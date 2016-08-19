@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+</head>
+<body>
+<style>
+body{
+	height:1000px;
+}
+	.con{
+		position:relative;
+	}
+	.input{
+		height:20px;
+		width:200px;
+		font-size:14px;
+		padding:0;
+		margin:0;
+		border:2px solid #000000;
+	}
+	.input:focus{
+		border:2px solid #3388ff;
+	}
+	.think{
+		position:absolute;
+		width:204px;
+		display:none;
+	}
+	.think ul{
+		margin:0;
+		padding:0;
+		font-size:14px;
+		border:1px solid #000000;
+		border-top:0;
+	}
+	.think li{
+		cursor:pointer;
+	}
+	.think .cursel{
+		background-color:#e7e7e7;
+	}
+</style>
+<div id="contain" class="con">
+	<input type="text" id="searchBtn" class="input"/>
+	<button id="button">搜索</button>
+	<div class="think">
+		<ul>
+			
+		</ul>
+	</div>
+</div>
+	<script>
+		var $input = $("#searchBtn");
+		var $think = $("#contain .think");
+		var $thinkul = $("#contain .think ul");
+		var $button = $("#button");
+		var down = 40;
+		var up = 38;
+		var enter = 13;
+		var keyword = "";
+		$input.on("keyup",function(){
+			var data = $(this).val();
+			if(keyword !== data){
+				if(data !== ""){
+					keyword = data;
+					$thinkul.html("");
+					$.ajax({
+						url: 'http://news.10jqka.com.cn/public/index_keyboard_'+encodeURIComponent(data)+'_stock,hk,fund,usa_5_jsonp.html',
+						type: 'GET',
+						dataType: 'jsonp',
+						jsonpCallback: "jsonp",
+						jsonp: !1,
+						cache: !0,
+						success:function(data){
+							var stock = data[0];
+							var ulHtml = [];
+							if(stock.length !== 0){
+								$.each(stock,function(key,value){
+									var itemData = value.split("||")[1].split(" ");
+									ulHtml.push("<li data="+itemData[0]+">"+itemData[0]+" "+itemData[1]+"</li>");
+								});
+								$thinkul.html(ulHtml.join(""));
+								$think.show();
+								$thinkul.find("li").on("click",function(){
+									setVal();
+								});
+								$thinkul.find("li").on("mouseenter",function(){
+									$("#contain .think .cursel").removeClass('cursel');
+									$(this).attr("class","cursel");
+								});
+								$thinkul.find("li").on("mouseleave",function(){
+									$(this).removeAttr("class");
+								});
+								
+							}else{
+								$think.hide();
+							}
+						}
+					});		
+				}else{
+					$think.hide();
+				}
+			}
+		});
+		$("body").on("click",function(){	
+		 	$think.hide();
+		});		
+		$button.on("click",function(){
+			alert($input.val());
+		});
+		$(window).keydown(function(event){
+			var num;
+			switch(event.keyCode){
+			    case down:
+			    	num = $thinkul.find("li").index($("#contain .think .cursel"));
+			    	if(num < 0 || num === ($thinkul.find("li").length - 1)){
+			    		num = 1;
+			    	}else{
+			    		num = num + 2;
+			    	}
+					$("#contain .think .cursel").removeClass('cursel');
+					$("#contain .think li:nth-child("+num.toString()+")").addClass('cursel');
+					break;
+				case up:
+					num = $thinkul.find("li").index($("#contain .think .cursel"));
+					if(num <= 0 ){
+			    		num = $thinkul.find("li").length;
+			    	}else{
+			    		num = num ;
+			    	}
+					$("#contain .think .cursel").removeClass('cursel');
+					$("#contain .think li:nth-child("+num.toString()+")").addClass('cursel');
+					break;
+
+				case enter:
+					if($("#contain .think .cursel")){
+						setVal();
+					}
+					break;
+			}
+		});
+		function setVal(){
+			$input.val($("#contain .think .cursel").attr("data"));
+			$button.click();
+		}
+	</script>
+</body>
+</html>

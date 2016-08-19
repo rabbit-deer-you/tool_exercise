@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>从上到下文字滚动</title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+</head>
+<body>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		#wrapper{
+			width:508px;
+			height:18px;
+			overflow:hidden;
+		}
+		.scrollText{
+			width:200px;
+			height:20px;
+			overflow:hidden;
+		}
+	</style>
+	<div id="wrapper">
+		<div id="con_1">
+			<ul>
+				<li>aaaaaaaaaaa</li>
+				www.baidu.com
+				<li>bbbbbbbbbbb</li>
+				<li>ccccccccccc</li>
+				<li>ddddddddddd</li>
+				<li>eeeeeeeeeee</li>
+				<li>fffffffffff</li>
+				<li>ggggggggggg</li>
+			</ul>
+		</div>
+		<div id="con_2"></div>
+	</div>
+	<script src="js.js"></script>
+	<script>
+		var opt = {
+			wrapper:"#wrapper",
+			speed:50
+		};
+		var textScroll = new $.fn.scrollText(opt);
+		textScroll.init();
+	</script>
+</body>
+</html>
